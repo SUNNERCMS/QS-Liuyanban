@@ -10,3 +10,10 @@
 
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
+### 工程代码首次github托管
+1、git clone git@github.com:SUNNERCMS/QS-Liuyanban.git
+2、git init 
+3、git add .
+4、git commit -m '注释'
+5、git remote add origin git@github.com:SUNNERCMS/QS-Liuyanban.git
+6、git push --set-upstream origin master
