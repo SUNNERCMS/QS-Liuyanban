@@ -17,3 +17,6 @@
 4、`git commit -m '注释'  `  
 5、`git remote add origin git@github.com:SUNNERCMS/QS-Liuyanban.git  `  
 6、`git push --set-upstream origin master  `  
+
+### 分支说明
+learn_project_demo: 学习工程项目的分支
