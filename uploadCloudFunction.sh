@@ -1,0 +1,1 @@
+"/Applications/wechatwebdevtools.app/Contents/MacOS/cli" cloud functions deploy --e cloud1-2gk1j0w889289b21 --n quickstartFunctions --r --project "/Users/sunnercms/Desktop/SQLYB" --report_start --report
