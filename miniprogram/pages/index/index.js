@@ -67,6 +67,7 @@ Page({
     const index = e.currentTarget.dataset.index
     const powerList = this.data.powerList
     powerList[index].showItem = !powerList[index].showItem
+    // 数据库列表项且未创建集合
     if (powerList[index].title === '数据库' && !this.data.haveCreateCollection) {
       this.onClickDatabase(powerList)
     } else {
@@ -109,6 +110,7 @@ Page({
     })
   },
 
+  // 配置数据库集合，然后将标示置为true
   onClickDatabase(powerList) {
     wx.showLoading({
       title: '',
