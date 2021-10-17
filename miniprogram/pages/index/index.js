@@ -57,6 +57,15 @@ Page({
         title: '部署服务',
         page: 'deployService'
       }]
+    },
+    {
+      title: 'TodoList',
+      tip: '利用云开发做的todolist',
+      showItem: false,
+      item: [{
+        title: 'TodoList页面入口, 操作数据库实现增删改查',
+        page: 'todoListPage'
+      }]
     }],
     envList,
     selectedEnv: envList[0],

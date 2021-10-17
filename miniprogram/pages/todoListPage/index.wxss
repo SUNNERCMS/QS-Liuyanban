@@ -1,0 +1,40 @@
+.todo_list_title {
+  box-sizing: border-box;
+  font-size: 48rpx;
+  color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  margin-top: 30rpx;
+  width: 100%;
+
+}
+.todo_list_wrap {
+  padding: 0 20rpx;
+  background-color: whitesmoke;
+}
+
+.todo_item_wrap {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #07c160;
+  border-radius: 6rpx;
+  padding: 10rpx;
+  margin-top: 15px
+}
+
+.button {
+  width: 200rpx;
+  text-align: center;
+  margin: 50rpx auto 0 auto;
+  height: 80rpx;
+  color: white;
+  border-radius: 5px;
+  line-height: 80rpx;
+  background-color: #07c160;
+}
+
+.operation_wrap {
+  display: flex;
+}
+.saveItem {
+  margin-right: 6rpx;
+}

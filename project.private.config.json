@@ -57,6 +57,13 @@
         {
           "name": "pages/updateRecordSuccess/index",
           "pathName": "pages/updateRecordSuccess/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "todolist",
+          "pathName": "pages/todoListPage/index",
+          "query": "envId=cloud1-2gk1j0w889289b21",
           "scene": null
         }
       ]

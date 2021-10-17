@@ -1,0 +1,28 @@
+<view>
+  <view class="todo_list_title">todoList云开发</view>
+  <view class="button" bindtap="addListItem">新增</view>
+  <view  wx:if="{{todoList}}" class="todo_list_wrap">
+
+    <view class="todo_list" wx:key="content" wx:for="{{todoList}}" wx:for-item="todoItem">
+      <view class="todo_item_wrap">
+        <input
+          class="item_content"
+          bindinput="bindInput"
+          data-index="{{index}}"
+          value="{{todoItem.content}}"
+          type="text"
+          auto-focus
+          placeholder="请输入内容"
+        >
+        </input>
+        <view class="operation_wrap">
+          <view class="saveItem" bindtap="saveTodoItem">保存</view>
+          <view>删除</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+</view>
+
