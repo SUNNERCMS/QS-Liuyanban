@@ -19,7 +19,10 @@ Page({
   uploadImg() {
     wx.showLoading({
       title: '',
-    })
+    });
+    // this.setData({
+    //   showUploadTip: true
+    // })
     // 让用户选择一张图片
     wx.chooseImage({
       count: 1,
