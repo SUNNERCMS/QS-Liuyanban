@@ -7,8 +7,30 @@ cloud.init({
 })
 
 const db = cloud.database()
+const _ = db.command
 
 exports.main = async (event, context) => {
-  // 返回数据库查询结果
-  return await db.collection('todos').get()
+  const {
+    searchkey
+  } = event;
+  if(!searchkey) {
+    // 获取全部列表数据；实际只能获取前20条数据
+    return await db.collection('todos').get()
+  } else {
+    return await db.collection('todos').where(_.or([
+      {
+        content: db.RegExp({
+          regexp: `${searchkey}`,
+          options: 'i'
+        })
+      },
+      {
+        due: db.RegExp({
+          regexp: `${searchkey}`,
+          options: 'i'
+        })
+      }
+    ])
+    ).get()
+  }
 }

@@ -2,9 +2,8 @@ Page({
   data: {
     envId: '',
     todoList: [],
-    itemTempData: {
-      itemContent: ''
-    }
+    tempCommonData: '', // item修改数据时的通用临时数据容器
+    searchkey: '' // 搜索关键词
   },
 
   queryTodoList() {
@@ -12,7 +11,10 @@ Page({
       title: '获取列表数据',
     }),
     wx.cloud.callFunction({
-      name: 'getTodoListData'
+      name: 'getTodoListData',
+      data: {
+        searchkey: this.data.searchkey
+      }
     }).then((resp) => {
       this.setData({
         todoList: resp.result.data
@@ -41,9 +43,7 @@ Page({
     wx.cloud.callFunction({
       name: 'addTodoItem',
       data: {
-        itemTempData: {
-          itemContent: ''
-        },
+        tempCommonData: '',
         due: new Date()
       }
     }).then(() => {
@@ -56,11 +56,17 @@ Page({
   },
 
   bindInput(e) {
-    const itemTempDataNew = {...this.data.itemTempData, itemContent: e.detail.value}
     this.setData({
-      itemTempData:itemTempDataNew
+      tempCommonData:e.detail.value
     })
   },
+
+  bindSearchInput(e) {
+    this.setData({
+      searchkey:e.detail.value
+    })
+  },
+
 
   // 更新指定的item内容
   updateTodoItem(e) {
@@ -73,7 +79,7 @@ Page({
     wx.cloud.callFunction({
       name: 'updateTodoItem',
       data: {
-        itemTempData: this.data.itemTempData,
+        tempCommonData: this.data.tempCommonData,
         due: new Date(),
         itemid
       }
@@ -91,7 +97,6 @@ Page({
     const {
       itemid
     } = e.currentTarget.dataset;
-    console.log('kkkkk:', itemid)
     wx.showLoading({
       title: '删除item数据',
     }),

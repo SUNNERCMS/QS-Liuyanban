@@ -1,8 +1,20 @@
 <view>
   <view class="todo_list_title">todoList云开发</view>
   <view class="button" bindtap="addListItem">新增</view>
-  <view  wx:if="{{todoList}}" class="todo_list_wrap">
+  <view class="search_wrap">
+    <input
+      class="search_input"
+      bindinput="bindSearchInput"
+      value="{{searchkey}}"
+      type="text"
+      auto-focus
+      placeholder="内容 | 日期"
+    >
+    </input>
+    <view class="search_button" bindtap="queryTodoList">搜索</view>
+  </view>
 
+  <view  wx:if="{{todoList}}" class="todo_list_wrap">
     <view class="todo_list" wx:key="content" wx:for="{{todoList}}" wx:for-item="todoItem">
       <view class="todo_item_wrap">
         <input

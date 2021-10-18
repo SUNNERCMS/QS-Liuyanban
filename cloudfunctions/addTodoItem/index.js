@@ -7,12 +7,12 @@ const db = cloud.database()
 // 新增todoItem数据
 exports.main = (event, context) => {
   const {
-    itemTempData,
+    tempCommonData,
     due
   } = event;
   db.collection('todos').add({
     data: {
-      content: itemTempData.itemContent,
+      content: tempCommonData,
       due
     }
   })

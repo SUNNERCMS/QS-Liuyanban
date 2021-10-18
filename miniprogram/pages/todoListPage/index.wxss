@@ -38,3 +38,28 @@
 .saveItem {
   margin-right: 6rpx;
 }
+
+.search_wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20rpx;
+
+}
+.search_input {
+  height: 40rpx;
+  border: 1rpx solid #07c160;
+  border-radius: 60rpx;
+  padding: 4rpx 20rpx 4rpx 30rpx
+}
+
+.search_button {
+  width: 100rpx;
+  text-align: center;
+  height: 60rpx;
+  color: white;
+  border-radius: 5rpx;
+  line-height: 60rpx;
+  background-color: #07c160;
+  margin-left: 10rpx;
+}

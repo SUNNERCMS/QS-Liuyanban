@@ -8,13 +8,13 @@ const db = cloud.database()
 
 exports.main = (event, context) => {
   const {
-    itemTempData,
+    tempCommonData,
     due,
     itemid
   } = event;
   db.collection('todos').doc(itemid).update({
     data: {
-      content: itemTempData.itemContent,
+      content: tempCommonData,
       due
     }
   })
