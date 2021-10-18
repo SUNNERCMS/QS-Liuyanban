@@ -17,7 +17,8 @@
         </input>
         <view class="operation_wrap">
           <view class="saveItem" bindtap="saveTodoItem">保存</view>
-          <view>删除</view>
+          <!-- data-itemId,实际会被转换为小写itemid -->
+          <view bindtap="deleteTodoItem" data-itemid="{{todoItem['_id']}}">删除</view>
         </view>
       </view>
     </view>

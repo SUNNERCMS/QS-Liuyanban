@@ -7,12 +7,7 @@ Page({
     }
   },
 
-
-  // 利用云函数查询数据库，获取列表数据
-  onLoad(options) {
-    this.setData({
-      envId: options.envId
-    }),
+  queryTodoList() {
     wx.showLoading({
       title: '获取列表数据',
     }),
@@ -29,6 +24,15 @@ Page({
     })
   },
 
+
+  // 利用云函数查询数据库，获取列表数据
+  onLoad(options) {
+    this.setData({
+      envId: options.envId
+    }),
+    this.queryTodoList();
+  },
+
   addListItem() {
     const listLength = this.data.todoList.length;
     const addItem = {
@@ -41,7 +45,6 @@ Page({
   },
 
   bindInput(e) {
-    console.log('kkkk:', e.detail.value)
     const itemTempDataNew = {...this.data.itemTempData, itemContent: e.detail.value}
     this.setData({
       itemTempData:itemTempDataNew
@@ -58,10 +61,30 @@ Page({
         itemTempData: this.data.itemTempData,
         due: new Date()
       }
+    }).then(() => {
+      this.queryTodoList();
+      wx.hideLoading()
+    }).catch((e) => {
+      console.log(e)
+      wx.hideLoading()
+    })
+  },
+
+  deleteTodoItem(e) {
+    const {
+      itemid
+    } = e.currentTarget.dataset;
+    console.log('kkkkk:', itemid)
+    wx.showLoading({
+      title: '删除item数据',
+    }),
+    wx.cloud.callFunction({
+      name: 'deleteTodoItem',
+      data: {
+        itemid
+      }
     }).then((resp) => {
-      // this.setData({
-      //   todoList: resp.result.data
-      // })
+      this.queryTodoList();
       wx.hideLoading()
     }).catch((e) => {
       console.log(e)
