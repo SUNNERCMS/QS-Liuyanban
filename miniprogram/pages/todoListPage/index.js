@@ -33,32 +33,17 @@ Page({
     this.queryTodoList();
   },
 
+  // 新增todoItem
   addListItem() {
-    const listLength = this.data.todoList.length;
-    const addItem = {
-      id: `todolist_item_th_${listLength}`,
-      content: ''
-    }
-    this.setData({
-      todoList: [...this.data.todoList, addItem]
-    });
-  },
-
-  bindInput(e) {
-    const itemTempDataNew = {...this.data.itemTempData, itemContent: e.detail.value}
-    this.setData({
-      itemTempData:itemTempDataNew
-    })
-  },
-
-  saveTodoItem() {
     wx.showLoading({
-      title: '保存item数据',
+      title: '新增item数据',
     }),
     wx.cloud.callFunction({
-      name: 'saveTodoItem',
+      name: 'addTodoItem',
       data: {
-        itemTempData: this.data.itemTempData,
+        itemTempData: {
+          itemContent: ''
+        },
         due: new Date()
       }
     }).then(() => {
@@ -70,6 +55,38 @@ Page({
     })
   },
 
+  bindInput(e) {
+    const itemTempDataNew = {...this.data.itemTempData, itemContent: e.detail.value}
+    this.setData({
+      itemTempData:itemTempDataNew
+    })
+  },
+
+  // 更新指定的item内容
+  updateTodoItem(e) {
+    const {
+      itemid
+    } = e.currentTarget.dataset;
+    wx.showLoading({
+      title: '保存item数据',
+    }),
+    wx.cloud.callFunction({
+      name: 'updateTodoItem',
+      data: {
+        itemTempData: this.data.itemTempData,
+        due: new Date(),
+        itemid
+      }
+    }).then(() => {
+      this.queryTodoList();
+      wx.hideLoading()
+    }).catch((e) => {
+      console.log(e)
+      wx.hideLoading()
+    })
+  },
+
+  // 删除具体的某一项
   deleteTodoItem(e) {
     const {
       itemid

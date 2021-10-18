@@ -1,16 +1,19 @@
-// 云函数入口文件
 const cloud = require('wx-server-sdk')
 
 cloud.init({
   env: cloud.DYNAMIC_CURRENT_ENV
 })
 const db = cloud.database()
-// 保存todoItem数据
+// 新增todoItem数据
 exports.main = (event, context) => {
+  const {
+    itemTempData,
+    due
+  } = event;
   db.collection('todos').add({
     data: {
-      content: event.itemTempData.itemContent,
-      due: event.due
+      content: itemTempData.itemContent,
+      due
     }
   })
   .then(res => {
