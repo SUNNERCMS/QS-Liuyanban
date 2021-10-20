@@ -15,7 +15,9 @@ exports.main = async (event, context) => {
   } = event;
   if(!searchkey) {
     // 获取全部列表数据；实际只能获取前20条数据
-    return await db.collection('todos').orderBy('_id', 'desc').get()
+    // return await db.collection('todos').orderBy('_id', 'desc').get()
+    // return await db.collection('todos').orderBy('due', 'desc').get()
+    return await db.collection('todos').orderBy('createTime', 'desc').get()
   } else {
     return await db.collection('todos').where(_.or([
       {

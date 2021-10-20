@@ -15,7 +15,8 @@ exports.main = (event, context) => {
   db.collection('todos').doc(itemid).update({
     data: {
       content: tempCommonData,
-      due
+      due,
+      createTime: db.serverDate()
     }
   })
   .then(res => {
